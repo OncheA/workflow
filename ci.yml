@@ -1,0 +1,25 @@
+name: Run Tests on Push to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x  # Remplacez x par la version Python que vous utilisez
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Si vous avez un fichier de dépendances
+
+    - name: Run Tests
+      run: python -m unittest discover
